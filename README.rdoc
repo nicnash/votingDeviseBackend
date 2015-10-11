@@ -23,6 +23,20 @@ Things you may want to cover:
 
 * ...
 
+rails g scaffold idea title:string description:text user_id:integer
+rails g scaffold vote user_id:integer idea_id:integer
+
+user has many ideas
+idea belongs to user
+user has many votes
+idea has many votes
+vote belongs to idea
+vote belongs to user
+
+User.create! email: "user@example.com", password: "password"
+Idea.create! title: "Banana Stand", description: "A community that buys and sells bananas using Javascript"
+Vote.create! user_id:1, idea_id:1
+
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
