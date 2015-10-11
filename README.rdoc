@@ -22,6 +22,11 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+//resources
+http://romulomachado.github.io/2015/09/28/using-ember-simple-auth-with-devise.html
+http://guides.railsgirls.com/commenting/
+http://guides.rubyonrails.org/active_record_basics.html
+https://thesocietea.org/2015/03/building-a-json-api-with-rails-part-2-serialization/
 
 rails g scaffold idea title:string description:text user_id:integer
 rails g scaffold vote user_id:integer idea_id:integer
