@@ -42,6 +42,7 @@ User.create! email: "user@example.com", password: "password"
 Idea.create! title: "Banana Stand", description: "A community that buys and sells bananas using Javascript"
 Vote.create! user_id:1, idea_id:1
 
+Idea.create! title: "Pickle Vendor", description: "The best pickler wins"
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.

@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     # using the token authenticated user if available
     before_filter :authenticate_user!
 
+
+
+    # helper_method :current_user def current_user @current_user ||= User.find_by_email!(session[:email]) end
+
     private
 
       def authenticate_user_from_token!

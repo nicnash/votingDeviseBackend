@@ -24,7 +24,16 @@ class VotesController < ApplicationController
   # POST /votes
   # POST /votes.json
   def create
-    @vote = Vote.new(vote_params)
+    puts 'heLOOOOOOOoooooooooooo'
+    # puts request.raw_post
+    # logger.debug " params: #{vote_params}"
+    # puts 'heLOOOOOOOoooooooooooo'
+    # puts vote_params
+    # grades = { "user_id" => request.raw_post.vote.user_id, "idea_is" => request.raw_post.vote.idea_id }.to_h
+    # puts grades
+    # poost = {:user_id => "1", :idea_id => "2"}
+    # {"user_id"=>"1", "idea_id"=>"2"}
+    @vote = Vote.new({"user_id"=>"1", "idea_id"=>"2"})
 
     respond_to do |format|
       if @vote.save
