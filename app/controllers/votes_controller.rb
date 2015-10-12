@@ -4,12 +4,15 @@ class VotesController < ApplicationController
   # GET /votes
   # GET /votes.json
   def index
-    @votes = Vote.all
+    # @votes = Vote.all
+    render :json => @votes
   end
 
   # GET /votes/1
   # GET /votes/1.json
   def show
+    puts "-------------------------------------"
+    format.json { render :json =>@vote}
   end
 
   # GET /votes/new
@@ -33,7 +36,8 @@ class VotesController < ApplicationController
     # puts grades
     # poost = {:user_id => "1", :idea_id => "2"}
     # {"user_id"=>"1", "idea_id"=>"2"}
-    @vote = Vote.new({"user_id"=>"1", "idea_id"=>"2"})
+    @vote = Vote.new(vote_params)
+    # @vote = Vote.new({"user_id"=>"1", "idea_id"=>"2"})
 
     respond_to do |format|
       if @vote.save

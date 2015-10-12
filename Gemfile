@@ -45,3 +45,4 @@ end
 
 gem 'devise'
 gem 'active_model_serializers', '~> 0.8.3'
+# gem "active_model_serializers", github: "rails-api/active_model_serializers"
