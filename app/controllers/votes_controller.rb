@@ -5,7 +5,9 @@ class VotesController < ApplicationController
   # GET /votes.json
   def index
     # @votes = Vote.all
-    render :json => @votes
+    # render :json => @votes
+    @votes = Vote.all
+    render json: @votes
   end
 
   # GET /votes/1
@@ -42,7 +44,9 @@ class VotesController < ApplicationController
     respond_to do |format|
       if @vote.save
         format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
-        format.json { render :show, status: :created, location: @vote }
+        # format.json { render :show, status: :created, location: @vote }
+        format.json { render :json =>@vote }
+        
       else
         format.html { render :new }
         format.json { render json: @vote.errors, status: :unprocessable_entity }

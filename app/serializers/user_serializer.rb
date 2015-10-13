@@ -1,6 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :say_hello
-  has_many :ideas
+  attributes :id, :email
+  # has_many :ideas
   
   def say_hello
     "Hello #{object.email}!"
