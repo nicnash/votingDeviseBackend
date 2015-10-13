@@ -45,7 +45,8 @@ class VotesController < ApplicationController
       if @vote.save
         format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
         # format.json { render :show, status: :created, location: @vote }
-        format.json { render :json =>@vote }
+        format.json { render :json =>true }
+        # format.json { render :json =>@vote }
         
       else
         format.html { render :new }

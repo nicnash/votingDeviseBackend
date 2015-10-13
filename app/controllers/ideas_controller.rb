@@ -11,6 +11,9 @@ class IdeasController < ApplicationController
   # GET /ideas/1
   # GET /ideas/1.json
   def show
+    # render :json =>@vote
+    idea = Idea.find(params[:id])
+    render json: idea, status: 200
   end
 
   # GET /ideas/new
@@ -45,6 +48,7 @@ class IdeasController < ApplicationController
       if @idea.update(idea_params)
         format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
         format.json { render :show, status: :ok, location: @idea }
+        # format.json { render :json =>@idea }
       else
         format.html { render :edit }
         format.json { render json: @idea.errors, status: :unprocessable_entity }
