@@ -13,8 +13,10 @@ class VotesController < ApplicationController
   # GET /votes/1
   # GET /votes/1.json
   def show
-    puts "-------------------------------------"
-    format.json { render :json =>@vote}
+    # puts "-------------------------------------"
+    # format.json { render :json =>@vote}
+    vote = Vote.find(params[:id])
+    render json: vote, status: 200
   end
 
   # GET /votes/new
