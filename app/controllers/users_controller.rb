@@ -4,16 +4,22 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
-    render json: @users
+    puts '-------------------index of users'
+    # @users = User.all
+    @user = User.where(nil) # creates an anonymous scope
+    @user = @user.email(params[:email]) if params[:email].present?
+    puts @user
+    puts '------'
+    
+    render json: @user
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.first
-    # user = User.find(params[:id])
-    render json: @user
+    # @user = User.first
+    user = User.find(params[:id])
+    render json: user
   end
 
   # GET /users/new
