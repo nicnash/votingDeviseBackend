@@ -4,13 +4,10 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    puts '-------------------index of users'
-    # @users = User.all
-    @user = User.where(nil) # creates an anonymous scope
-    @user = @user.email(params[:email]) if params[:email].present?
-    puts @user
-    puts '------'
-    
+    puts '------------------------------'
+    puts params[:filter][:email]
+    @user = User.find_by_email(params[:filter][:email]) if params[:filter].present?
+
     render json: @user
   end
 
