@@ -3,6 +3,7 @@ class VoteSerializer < ActiveModel::Serializer
 
   # has_one :user, embed: :ids, include: true
   has_one :user, embed: :ids
+  has_one :idea, embed: :ids
   # has_one :idea
   # def attributes
   #   {'name' => nil, 'age' => nil}
