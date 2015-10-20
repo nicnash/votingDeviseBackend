@@ -40,6 +40,7 @@ vote belongs to user
 
 User.create! email: "user@example.com", password: "password"
 User.create! email: "user2@example.com", password: "password"
+User.create! email: "user3@example.com", password: "password"
 Idea.create! title: "Banana Stand", description: "A community that buys and sells bananas using Javascript"
 Vote.create! user_id:1, idea_id:1
 

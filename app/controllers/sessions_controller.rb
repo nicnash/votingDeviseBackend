@@ -5,6 +5,7 @@ class SessionsController < Devise::SessionsController
   respond_to :html, :json
 
   def create
+    puts '-----------------------create in devise sesions controller'
     super do |user|
       if request.format.json?
         data = {
