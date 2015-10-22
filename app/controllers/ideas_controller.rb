@@ -60,6 +60,8 @@ class IdeasController < ApplicationController
   # DELETE /ideas/1
   # DELETE /ideas/1.json
   def destroy
+    #catch exception  rescue
+
     @idea.destroy
     respond_to do |format|
       format.html { redirect_to ideas_url, notice: 'Idea was successfully destroyed.' }
@@ -70,7 +72,7 @@ class IdeasController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_idea
-      @idea = Idea.find(params[:id])
+      @idea = current_user.ideas.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
