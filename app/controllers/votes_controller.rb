@@ -65,7 +65,7 @@ class VotesController < ApplicationController
   # DELETE /votes/1.json
   def destroy
     @vote.destroy
-      format.json { head :no_content }
+      head :no_content
   end
 
   private
