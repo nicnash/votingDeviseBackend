@@ -30,30 +30,22 @@ class IdeasController < ApplicationController
   def create
     @idea = Idea.new(idea_params)
 
-    respond_to do |format|
-      if @idea.save
-        format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
-        format.json { render :json =>@idea, status: :created}
-        # format.json { render :show, status: :created, location: @idea }
-      else
-        format.html { render :new }
-        format.json { render json: @idea.errors, status: :unprocessable_entity }
-      end
+    if @idea.save
+      render :json =>@idea, status: :created
+    else
+      render json: @idea.errors, status: :unprocessable_entity
     end
+
   end
 
   # PATCH/PUT /ideas/1
   # PATCH/PUT /ideas/1.json
   def update
-    respond_to do |format|
-      if @idea.update(idea_params)
-        format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
-        format.json { render :show, status: :ok, location: @idea }
-        # format.json { render :json =>@idea }
-      else
-        format.html { render :edit }
-        format.json { render json: @idea.errors, status: :unprocessable_entity }
-      end
+    
+    if @idea.update(idea_params)
+      render :show, status: :ok, location: @idea
+    else
+      render json: @idea.errors, status: :unprocessable_entity
     end
   end
 
@@ -63,10 +55,7 @@ class IdeasController < ApplicationController
     #catch exception  rescue
 
     @idea.destroy
-    respond_to do |format|
-      format.html { redirect_to ideas_url, notice: 'Idea was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      head :no_content
   end
 
   private

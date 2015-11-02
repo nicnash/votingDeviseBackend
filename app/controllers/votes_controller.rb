@@ -43,42 +43,29 @@ class VotesController < ApplicationController
     @vote = Vote.new(vote_params)
     # @vote = Vote.new({"user_id"=>"1", "idea_id"=>"2"})
 
-    respond_to do |format|
-      if @vote.save
-        format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
-        # format.json { render :show, status: :created, location: @vote }
-        # format.json { render :json =>true }
-        format.json { render :json =>@vote }
-        
-      else
-        format.html { render :new }
-        format.json { render json: @vote.errors, status: :unprocessable_entity }
-      end
+    if @vote.save
+      render :json =>@vote
+    else
+      render json: @vote.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /votes/1
   # PATCH/PUT /votes/1.json
   def update
-    respond_to do |format|
-      if @vote.update(vote_params)
-        format.html { redirect_to @vote, notice: 'Vote was successfully updated.' }
-        format.json { render :show, status: :ok, location: @vote }
-      else
-        format.html { render :edit }
-        format.json { render json: @vote.errors, status: :unprocessable_entity }
-      end
+    if @vote.update(vote_params)
+      render :show, status: :ok, location: @vote
+    else
+      render json: @vote.errors, status: :unprocessable_entity
     end
+
   end
 
   # DELETE /votes/1
   # DELETE /votes/1.json
   def destroy
     @vote.destroy
-    respond_to do |format|
-      format.html { redirect_to votes_url, notice: 'Vote was successfully destroyed.' }
       format.json { head :no_content }
-    end
   end
 
   private
