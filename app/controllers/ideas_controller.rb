@@ -29,9 +29,10 @@ class IdeasController < ApplicationController
   # POST /ideas
   # POST /ideas.json
   def create
+
     @idea = Idea.new(idea_params)
 
-    if @idea.save
+    if current_user.ideas.length < 3 and @idea.save
       render :json =>@idea, status: :created
     else
       render json: @idea.errors, status: :unprocessable_entity
