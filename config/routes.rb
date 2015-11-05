@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'sessions' }
   # resources :editpass, only: [:update]
   
-  patch "/editpass" => "editpass#update"
+  # patch "/editpass" => "editpass#update"
+  patch "/editpass" => "users#updatepass"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

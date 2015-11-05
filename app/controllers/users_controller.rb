@@ -30,22 +30,22 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.json
-  def create
+  # def create
 
-    puts '-----------------------create in user controller'
+  #   puts '-----------------------create in user controller'
 
-    @user = User.new(user_params)
+  #   @user = User.new(user_params)
 
-    respond_to do |format|
-      if @user.save
-        # format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render json: @user, status: :created, location: @user }
-      else
-        # format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @user.save
+  #       # format.html { redirect_to @user, notice: 'User was successfully created.' }
+  #       format.json { render json: @user, status: :created, location: @user }
+  #     else
+  #       # format.html { render :new }
+  #       format.json { render json: @user.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
@@ -58,6 +58,26 @@ class UsersController < ApplicationController
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def updatepass
+    puts 'update_password!!!!!----userController--------------------------------'
+    # current_user
+    @user = User.find(current_user.id)
+    if @user.update(userpass_params)
+      @user.authentication_token = generate_authentication_token
+      @user.save
+      # user.update_attributes(:authentication_token => "new token")
+      # Sign in the user by passing validation in case their password changed
+      render json: @user.authentication_token
+      
+      # sign_in @user, :bypass => true
+
+      # redirect_to root_path
+    else
+      render json: false
+      # render "edit"
     end
   end
 
@@ -80,5 +100,16 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:email, :password)
+    end
+
+    def userpass_params
+      params.require(:user).permit(:password, :password_confirmation)
+    end
+
+    def generate_authentication_token
+      loop do
+        token = Devise.friendly_token
+        break token unless User.where(authentication_token: token).first
+      end
     end
 end
