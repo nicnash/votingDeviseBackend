@@ -1,7 +1,8 @@
 class IdeasController < ApplicationController
   respond_to :json
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_user_from_token!, :except => :index
+  before_filter :authenticate_user!, :except => :index
   # GET /ideas
   # GET /ideas.json
   def index
