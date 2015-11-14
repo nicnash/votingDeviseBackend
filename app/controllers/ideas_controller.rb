@@ -57,14 +57,21 @@ class IdeasController < ApplicationController
   def destroy
     #catch exception  rescue
 
-    @idea.destroy
-      head :no_content
+    if  @idea.destroy
+      render :json =>@idea, status: :no_content
+    else
+      render json: @idea.errors, status: :unprocessable_entity
+    end
+      # head :no_content
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_idea
-      @idea = current_user.ideas.find(params[:id])
+      puts '------set_idea'
+      @idea = Idea.find(params[:id])
+        #problem with getting current user?      
+      # @idea = current_user.ideas.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
